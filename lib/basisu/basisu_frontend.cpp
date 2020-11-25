@@ -17,7 +17,9 @@
 // This code originally supported full ETC1 and ETC1S, so there's some legacy stuff to be cleaned up in here.
 // Add endpoint tiling support (where we force adjacent blocks to use the same endpoints during quantization), for a ~10% or more increase in bitrate at same SSIM. The backend already supports this.
 //
+#ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
+#endif
 #include "transcoder/basisu.h"
 #include "basisu_frontend.h"
 #include <unordered_set>

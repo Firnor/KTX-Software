@@ -101,10 +101,10 @@ printIdentifier(const ktx_uint8_t identifier[12])
     for (uint32_t i = 0; i < 12 && idlen < sizeof(u8identifier); i++, idlen++) {
         // Convert the angle brackets to utf-8 for better printing. The
         // conversion below only works for characters whose msb's are 10.
-        if (identifier[i] == U'\xAB') {
+        if (identifier[i] == '\xAB') {
           u8identifier[idlen++] = '\xc2';
           u8identifier[idlen] = identifier[i];
-        } else if (identifier[i] == U'\xBB') {
+        } else if (identifier[i] == '\xBB') {
           u8identifier[idlen++] = '\xc2';
           u8identifier[idlen] = identifier[i];
 		} else if (identifier[i] < '\x20') {

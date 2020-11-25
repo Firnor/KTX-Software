@@ -33,7 +33,9 @@
  * before these definitions were needed.
  */
 #if defined(KHRONOS_STATIC)
-  #define KTX_API
+    #ifndef KTX_API
+      #define KTX_API
+    #endif
 #elif defined(_WIN32)
   #if !defined(KTX_API)
     #define KTX_API __declspec(dllimport)

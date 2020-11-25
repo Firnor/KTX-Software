@@ -1,7 +1,7 @@
 # Copyright 2015-2020 The Khronos Group Inc.
 # SPDX-License-Identifier: Apache-2.0
 
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.10)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/modules/")
 
@@ -19,7 +19,7 @@ include(CTest)
 include(GNUInstallDirs)
 include(CMakeDependentOption)
 
-include(cmake/mkvk.cmake)
+#include(cmake/mkvk.cmake)
 include(cmake/xcode.cmake)
 
 # OPTIONS
@@ -93,12 +93,12 @@ endif()
 # Global Optimization Flags
 if(EMSCRIPTEN)
     add_compile_options( $<IF:$<CONFIG:Debug>,-O0,-O3> )
-    add_link_options( $<IF:$<CONFIG:Debug>,-g4,-O3> )
+    #add_link_options( $<IF:$<CONFIG:Debug>,-g4,-O3> )
 elseif(MSVC)
     add_compile_options( $<IF:$<CONFIG:Debug>,/Gz,/O2> )
 else()
     add_compile_options( $<IF:$<CONFIG:Debug>,-O0,-O3> )
-    add_link_options( $<IF:$<CONFIG:Debug>,-g,-O3> )
+    #add_link_options( $<IF:$<CONFIG:Debug>,-g,-O3> )
 endif()
 
 set(KTX_MAIN_SRC
@@ -192,7 +192,7 @@ macro(commom_lib_settings lib write )
     else()
         target_compile_options(${lib} PRIVATE
             # clang options
-            $<$<CXX_COMPILER_ID:AppleClang,Clang>:
+            $<$<CXX_COMPILER_ID:Clang>:
                 -Wno-nested-anon-types
                 -Wno-gnu-anonymous-struct
             >
@@ -322,18 +322,6 @@ macro(commom_lib_settings lib write )
             zstd::zstd
         )
     elseif(ANDROID)
-        # add_library(zstd STATIC IMPORTED)
-        # set_target_properties(zstd PROPERTIES
-        # IMPORTED_LOCATION /Users/Shared/SDK/zstd/build/cmake/install-android/lib/libzstd.a
-        # )
-        # target_link_libraries(
-        #     ktx
-        #     zstd
-        # )
-        #set(ZSTD_BUILD_PROGRAMS OFF)
-        #set(ZSTD_BUILD_TESTS OFF)
-        #add_subdirectory(${KTX_ZSTD_DIR} out/zstd)
-
         # zstd has to be included beforehand
         target_link_libraries(
             ${lib}
