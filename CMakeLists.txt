@@ -36,8 +36,6 @@ option( KTX_FEATURE_LOADTEST_APPS "Create load tests apps that load and display 
 option( KTX_FEATURE_STATIC_LIBRARY "Create static libraries (shared otherwise)" ${LIB_TYPE_DEFAULT} )
 option( KTX_FEATURE_TESTS "Create unit tests" ON )
 
-set( KTX_ZSTD_DIR "")
-
 set(VULKAN_INSTALL_DIR "" CACHE PATH "Path to installation of Vulkan SDK (obtainable from https://vulkan.lunarg.com/sdk/home )")
 
 if(APPLE)
@@ -80,7 +78,7 @@ endif()
 
 set(bitness 64)
 if(NOT CMAKE_SIZEOF_VOID_P EQUAL 8 OR FORCE32)
-	set(bitness 32)
+    set(bitness 32)
 endif()
 
 if(KTX_FEATURE_STATIC_LIBRARY)
@@ -332,9 +330,11 @@ macro(commom_lib_settings lib write )
         #     ktx
         #     zstd
         # )
-        set(ZSTD_BUILD_PROGRAMS OFF)
-        set(ZSTD_BUILD_TESTS OFF)
-        add_subdirectory(${KTX_ZSTD_DIR} zstd)
+        #set(ZSTD_BUILD_PROGRAMS OFF)
+        #set(ZSTD_BUILD_TESTS OFF)
+        #add_subdirectory(${KTX_ZSTD_DIR} out/zstd)
+
+        # zstd has to be included beforehand
         target_link_libraries(
             ${lib}
             libzstd_static
