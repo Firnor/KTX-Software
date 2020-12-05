@@ -17,7 +17,9 @@
  */
 
 #if defined(_WIN32)
+  #ifndef _CRT_SECURE_NO_WARNINGS
   #define _CRT_SECURE_NO_WARNINGS
+  #endif
   #if _MSC_VER < 1900
     #define snprintf _snprintf
   #endif

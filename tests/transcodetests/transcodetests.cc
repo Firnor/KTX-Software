@@ -2,7 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #if defined(_WIN32)
+#ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
+#endif
 #define OS_SEP '\\'
 #define UNIX_SEP '/'
 #else

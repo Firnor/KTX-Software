@@ -17,7 +17,9 @@
  */
 
 #if defined(_WIN32)
+  #ifndef _CRT_SECURE_NO_WARNINGS
   #define _CRT_SECURE_NO_WARNINGS
+  #endif
   #if _MSC_VER < 1900
     #define snprintf _snprintf
   #endif
@@ -816,7 +818,7 @@ class SwizzleTestBase : public ::testing::Test {
                         srcByteLen,
                         swizzle);
 
-       for (uint32_t i = 0; i < width * height; i++) {
+       for (uint32_t i = 0; i < static_cast<uint32_t>(width * height); i++) {
            for (uint32_t c = 0; c < 4; c++) {
                if (swizzle[c] == ZERO)
                    EXPECT_EQ(dest[i][c], 0);
