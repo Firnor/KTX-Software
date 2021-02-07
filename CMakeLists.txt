@@ -543,7 +543,7 @@ if(KTX_FEATURE_TOOLS)
 endif()
 
 # Tests
-add_subdirectory(tests)
+#add_subdirectory(tests)
 
 # Documentation
 if(KTX_FEATURE_DOC)
